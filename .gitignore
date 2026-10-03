@@ -1,0 +1,41 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+.uv/
+
+# YOLO11-HLB weights: >50MB triggers GitHub warnings, and they're derived from
+# a paper still under review
+*.pt
+*.onnx
+*.engine
+
+# Field photos and annotations are unpublished paper data
+data/
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+*.npy
+*.npz
+!assets/**/*.png
+
+*.mp4
+*.gif
+!assets/*.gif
+
+.vscode/
+.idea/
+.claude/
+
+*.asv
+*.mat
+slprj/
+
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
