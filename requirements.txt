@@ -1,0 +1,15 @@
+# delta 环境 / Python 3.11 —— 运动学、动力学、轨迹、控制与数值仿真侧
+# 感知侧（torch + ultralytics + YOLO11-HLB）跑在 conda 环境 yolo11 里，不在本清单内
+# 装法： <python> -m pip install -r requirements.txt
+
+numpy>=2.4,<3
+scipy>=1.17,<2
+matplotlib>=3.11,<4
+opencv-python>=5.0,<6
+pytest>=9.1,<10
+tqdm>=4.66,<5
+pyvista>=0.49,<1
+trimesh>=5.1,<6
+
+# VS Code 跑 .ipynb 只需 kernel，不需要整套 notebook/jupyterlab
+ipykernel>=7.4,<8
