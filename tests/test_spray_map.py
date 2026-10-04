@@ -31,10 +31,22 @@ def test_buffer_px_from_physical_width():
     f = spray_map.protection_buffer_px
     assert f(3072, fov_side_m=0.60, buffer_m=0.005) == 26
     assert f(1080, fov_side_m=0.60, buffer_m=0.005) == 9
+    assert f(768, fov_side_m=0.60, buffer_m=0.005) == 6      # 当前部署决策分辨率
+    assert f(512, fov_side_m=0.60, buffer_m=0.005) == 4      # 缓冲核仍可分辨的下限附近
     assert f(480, fov_side_m=0.60, buffer_m=0.005) == 4
     assert f(64, fov_side_m=0.60, buffer_m=0.005) == 2          # 下限兜住
     # 迁移路径：旧标定 15px@3072 在 1 m 视场下可被米制参数精确复现
     assert f(3072, fov_side_m=1.0, buffer_m=15 / 3072) == 15
+
+
+def test_working_resolution_only_downsamples():
+    big = np.zeros((1920, 1920, 3), np.uint8)
+    assert spray_map.working_resolution(big, 768).shape[:2] == (768, 768)
+    small = np.zeros((600, 600, 3), np.uint8)
+    assert spray_map.working_resolution(small, 768) is small     # 不放大
+    assert spray_map.working_resolution(big, 0) is big           # 0 表示关闭
+    rect = np.zeros((1080, 1920, 3), np.uint8)
+    assert spray_map.working_resolution(rect, 768).shape[:2] == (432, 768)
 
 
 def test_all_weed_field_is_heavy():

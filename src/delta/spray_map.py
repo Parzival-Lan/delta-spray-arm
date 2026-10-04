@@ -31,6 +31,23 @@ def center_square(image):
     return image[y0:y0 + s, x0:x0 + s]
 
 
+def working_resolution(image, process_side):
+    """把图按 INTER_AREA 降采样到边长 process_side，作为决策分辨率。
+
+    INTER_AREA 是大比例缩小的抗锯齿首选，画质优于相机原生低分辨档；只降不升。
+    决策分辨率是设备相关的量，缓冲核宽度由它反算，所以换设备只改这一个入口。
+    """
+    if not process_side:
+        return image
+    h, w = image.shape[:2]
+    s = int(process_side)
+    if max(h, w) <= s:
+        return image
+    k = s / float(max(h, w))
+    return cv2.resize(image, (max(1, int(round(w * k))), max(1, int(round(h * k)))),
+                      interpolation=cv2.INTER_AREA)
+
+
 def extract_green_mask(image, exg_threshold=EXG_THRESHOLD):
     """Raw EXG + 固定阈值 + HSV 绿色校验。
 
