@@ -60,7 +60,7 @@ python scripts/run_prescription.py <图> --python <感知环境python> \
 | `src/delta/perception.py` | 跨环境桥接：调感知侧 worker，读回 `.npz` 掩膜 | ✅ |
 | `scripts/perception_worker.py` | 在感知环境里运行，图像 → 掩膜 + provenance | ✅ |
 | `scripts/run_prescription.py` | 处方图命令行入口 | ✅ |
-| `src/delta/dynamics.py` `simulator.py` `controller.py` `trajectory.py` `viz.py` | 简化动力学 / RK4 积分 / PD+前馈与计算力矩 / 轨迹规划 / 线框动画 | 🔲 W1–W2 逐步建，目前是空占位文件 |
+| `src/delta/dynamics.py` `simulator.py` `controller.py` `trajectory.py` `viz.py` | 简化动力学 / RK4 积分 / PD+前馈与计算力矩 / 轨迹规划 / 线框动画 | 🔲 尚未创建，W1–W2 按里程碑逐个建 |
 | `notes/` | 项目契约，见下节 | ✅ |
 | `assets/` | 演示 GIF 与结果图 | 🔲 W5 |
 
